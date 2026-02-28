@@ -1,4 +1,14 @@
 <?xml version="1.0"?>
+<!-- Bu XACRO dosyası:
+Robot gövdesi ve tekerlekleri fiziksel ve görsel olarak tanımlar.
+Lidar sensörü ekler ve Gazebo’da simüle eder.
+Tekerlek sürtünmesi ve fizik parametrelerini ayarlar.
+Differential drive plugin ile cmd_vel → hareket, odom → pozisyon ve TF → çerçeve ilişkileri sağlar. -->
+<!-- XACRO =XML Macros ~ urdf dosyaları robot modellerini tanımlar. xacro urdfnin bir uzantısıdır ve "makrolar ve parametreler ekler" 
+XACRO ile daha esnek ve tekrar kullanılabilir URDF dosyaları oluşturabiliriz.
+Tekrar eden kodu azaltır.
+Parametre ile robot özelliklerini kolay değiştirir.
+Karmaşık robotlarda temiz ve yönetilebilir yapı sağlar-->
 <robot name="ev_hizmet_robotu" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:property name="base_radius" value="0.18"/>
@@ -11,7 +21,7 @@
   <material name="blue"><color rgba="0 0 0.8 1"/></material>
   <material name="black"><color rgba="0.1 0.1 0.1 1"/></material>
   <material name="grey"><color rgba="0.6 0.6 0.6 1"/></material>
-
+  <!-- robotun zemine temas noktası -->
   <link name="base_footprint"/>
 
   <joint name="base_footprint_joint" type="fixed">
@@ -19,17 +29,20 @@
     <child link="base_link"/>
     <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/> 
   </joint>
-
+  <!-- robotun gövdesi.joint ile birbirine bağlanmış ve yükseklik olarak tekerlek yarıçapı kadar yukarıda. -->
   <link name="base_link">
+    <!-- visual → Gazebo veya RViz’de görünen şekil (silindir). -->
     <visual>
       <origin xyz="0 0 ${base_height/2}"/>
       <geometry><cylinder radius="${base_radius}" length="${base_height}"/></geometry>
       <material name="blue"/>
     </visual>
+    <!-- collision → Fizik simülasyonunda çarpışma modeli. -->
     <collision>
       <origin xyz="0 0 ${base_height/2}"/>
       <geometry><cylinder radius="${base_radius}" length="${base_height}"/></geometry>
     </collision>
+    <!-- inertial → Kütle ve eylemsizlik (fizik simülasyonu için). -->
     <inertial>
       <origin xyz="0 0 0.01"/> 
       <mass value="1.0"/> <inertia
@@ -38,7 +51,8 @@
         izz="0.02"/> 
     </inertial>
   </link>
-
+  <!-- wheel makrosu → tekerlek ve sürekli dönen eklemi tanımlar.
+    y_reflect → sol/sağ ayrımı (y ekseninde simetri). -->
   <xacro:macro name="wheel" params="prefix y_reflect">
     <link name="${prefix}_wheel">
       <visual>
@@ -139,7 +153,10 @@
     <kp value="1000000.0"/>
     <kd value="10.0"/>
   </gazebo>
-
+  <!-- Gazebo’da robotun differential drive (iki tekerlekli) sürüşünü simüle eder. -->
+  <!-- cmd_vel → hız komutlarını alır.
+       odom → odometriyi yayınlar.
+       TF → robotun frame’lerini günceller -->
   <gazebo>
     <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
       <left_joint>left_wheel_joint</left_joint>

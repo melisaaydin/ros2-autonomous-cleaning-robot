@@ -1,32 +1,32 @@
-controller_manager:
+controller_manager: #robot kontrolcülerini yöneten ana bileşen.
   ros__parameters:
-    update_rate: 100 # Hz
-    use_sim_time: true
+    update_rate: 100 # Hz - her saniye 100 kez güncellenecek. 10ms aralıklarla kontrol sinyali gönderilir.
+    use_sim_time: true #true: robot simülasyonda çalışıyorsa, sistem saati yerine simülasyon saatini kullanması için yazdık. gerçek robotta genellikle false olur
 
     # Kontrolcü Tanımlamaları
     diff_cont:
-      type: diff_drive_controller/DiffDriveController
+      type: diff_drive_controller/DiffDriveController #tekerlekleri hız ve pozisyona göre kontrol eder.
 
     joint_state_broadcaster:
-      type: joint_state_broadcaster/JointStateBroadcaster
+      type: joint_state_broadcaster/JointStateBroadcaster # tekerlerin ve jointlerin anlık konum ve hız bilgisini yayınlar. diğer nodelar bunu kullanarak robot durumunu görselleştirebilir.
 
 diff_cont:
   ros__parameters:
-    # Tekerlek eklemleri (URDF'deki joint isimleriyle birebir aynı olmalı)
+    # Tekerlek eklemleri - bu isimler controler ile eşleşmezse controller çalışmaz.
     left_wheel_names: ["left_wheel_joint"]
     right_wheel_names: ["right_wheel_joint"]
 
-    # Robot Geometrisi (URDF değerlerinle uyumlu)
-    wheel_separation: 0.22
-    wheel_radius: 0.04
+    # Robot Geometrisi 
+    wheel_separation: 0.22 #tekerlek arası mesafe. dönüş ve odometri hesapları buna göre yapılır
+    wheel_radius: 0.04 #tekerlek yarıçapı
 
     # Odometri Ayarları
-    base_frame_id: base_footprint
-    odom_frame_id: odom
-    enable_odom_tf: true
-    publish_rate: 50.0
+    base_frame_id: base_footprint #robot gövdesinin referans framei
+    odom_frame_id: odom #odometri hareketi bu çerçevede hesaplanır.
+    enable_odom_tf: true #odometri ve gövde arasındaki TF yayınlansın mı?
+    publish_rate: 50.0 #odometri bilgisi saniyede 50 kez yayınla
     
-    # Hız Limitleri (Süpürge robotunun sakin gitmesi için düşürüldü)
+    # Hız Limitleri 
     linear:
       x:
         has_velocity_limits: true
@@ -44,5 +44,5 @@ diff_cont:
         max_acceleration: 1.5
 
     # Zaman Aşımı ve Diğer Ayarlar
-    cmd_vel_timeout: 0.5
-    use_stamped_vel: false
+    cmd_vel_timeout: 0.5 #0.5 saniye cmd_vel mesajı gelmezse robot durur güvenlik için
+    use_stamped_vel: false #sadece twist mesajı bekleniyor.  Twist robotun  hız bilgisini taşır.

@@ -3,16 +3,16 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
-import numpy as np
+import numpy as np #numpy → Lidar verilerini kolayca hesaplamak için.
 
 class SupurgeBeyni(Node):
     def __init__(self):
         super().__init__('supurge_beyni')
         
         # Hız komutlarını yayınlayacak publisher
-        self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10) #robotun hızını cmd_vel e gönderecek
         # Lidar verisini dinleyecek subscriber
-        self.subscription = self.create_subscription(LaserScan, 'scan', self.scan_callback, 10)
+        self.subscription = self.create_subscription(LaserScan, 'scan', self.scan_callback, 10) #her veri geldiğinde scan_callback fonksiyonu çağrılır. 10 → QoS derinliği (mesaj kuyruğu boyutu).
         self.get_logger().info('Süpürge beyni devrede! Temizlik başlıyor...')
 
     def scan_callback(self, msg):
@@ -22,7 +22,7 @@ class SupurgeBeyni(Node):
         # 'inf' (sonsuz) değerlerini 10 metre gibi güvenli bir sayıya çek
         ranges = np.nan_to_num(ranges, posinf=10.0, neginf=10.0)
         
-        # Dizi uzunluğunu dinamik olarak bul (180 mi, 360 mı fark etmez)
+        # Dizi uzunluğunu dinamik olarak bul
         uzunluk = len(ranges)
         orta_nokta = uzunluk // 2
         
