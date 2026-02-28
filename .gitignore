@@ -1,0 +1,27 @@
+# ROS2 build files
+build/
+install/
+log/
+
+# Colcon files
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Linux
+*.swp
+*.swo
+*~
+
+# Gazebo
+*.world.bak

@@ -1,0 +1,48 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 # Hz
+    use_sim_time: true
+
+    # Kontrolcü Tanımlamaları
+    diff_cont:
+      type: diff_drive_controller/DiffDriveController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+diff_cont:
+  ros__parameters:
+    # Tekerlek eklemleri (URDF'deki joint isimleriyle birebir aynı olmalı)
+    left_wheel_names: ["left_wheel_joint"]
+    right_wheel_names: ["right_wheel_joint"]
+
+    # Robot Geometrisi (URDF değerlerinle uyumlu)
+    wheel_separation: 0.22
+    wheel_radius: 0.04
+
+    # Odometri Ayarları
+    base_frame_id: base_footprint
+    odom_frame_id: odom
+    enable_odom_tf: true
+    publish_rate: 50.0
+    
+    # Hız Limitleri (Süpürge robotunun sakin gitmesi için düşürüldü)
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 0.2        # Maksimum ileri hız (m/s)
+        min_velocity: -0.2       # Maksimum geri hız (m/s)
+        has_acceleration_limits: true
+        max_acceleration: 0.5    # Yumuşak kalkış için ivme
+
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 0.8        # Maksimum dönüş hızı (rad/s)
+        min_velocity: -0.8
+        has_acceleration_limits: true
+        max_acceleration: 1.5
+
+    # Zaman Aşımı ve Diğer Ayarlar
+    cmd_vel_timeout: 0.5
+    use_stamped_vel: false
