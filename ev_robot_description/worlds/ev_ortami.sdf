@@ -1,18 +1,15 @@
 <?xml version="1.0" ?>
 <sdf version="1.8">
-  <world name="modern_ev">
+  <world name="gercek_ev_ferah">
     <physics name="1ms" type="ignored">
-      <max_step_size>0.01</max_step_size> <real_time_factor>1.0</real_time_factor>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
     </physics>
-    <!-- fizik hesaplamalarını yapar -->
     <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
-    <!-- kullanıcı komutlarını işler -->
     <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
-    <!-- dinyadaki tüm nesneleri yayınlar -->
     <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
-    <!-- sensörleri simüle eder ve görselleştirir -->
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
-      <render_engine>ogre</render_engine> 
+      <render_engine>ogre2</render_engine>
     </plugin>
 
     <light type="directional" name="sun">
@@ -27,36 +24,76 @@
       <static>true</static>
       <link name="link">
         <collision name="collision">
-          <geometry><plane><normal>0 0 1</normal></plane></geometry>
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
         </collision>
         <visual name="visual">
-          <geometry><plane><normal>0 0 1</normal></plane></geometry>
-          <material><ambient>0.3 0.3 0.3 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
         </visual>
       </link>
     </model>
 
-    <model name="dis_duvarlar">
+    <model name="duvarlar">
       <static>true</static>
-      <link name="wall">
-        <collision name="front"><pose>5 0 0.5 0 0 0</pose><geometry><box><size>0.1 10 1</size></box></geometry></collision>
-        <visual name="front_v"><pose>5 0 0.5 0 0 0</pose><geometry><box><size>0.1 10 1</size></box></geometry></visual>
-        <collision name="back"><pose>-5 0 0.5 0 0 0</pose><geometry><box><size>0.1 10 1</size></box></geometry></collision>
-        <visual name="back_v"><pose>-5 0 0.5 0 0 0</pose><geometry><box><size>0.1 10 1</size></box></geometry></visual>
-        <collision name="left"><pose>0 5 0.5 0 0 1.57</pose><geometry><box><size>0.1 10 1</size></box></geometry></collision>
-        <visual name="left_v"><pose>0 5 0.5 0 0 1.57</pose><geometry><box><size>0.1 10 1</size></box></geometry></visual>
-        <collision name="right"><pose>0 -5 0.5 0 0 1.57</pose><geometry><box><size>0.1 10 1</size></box></geometry></collision>
-        <visual name="right_v"><pose>0 -5 0.5 0 0 1.57</pose><geometry><box><size>0.1 10 1</size></box></geometry></visual>
+      <link name="link">
+        <visual name="v_arka"><pose>0 5 1 0 0 0</pose><geometry><box><size>12 0.2 2</size></box></geometry><material><ambient>0.7 0.5 0.3 1</ambient></material></visual>
+        <collision name="c_arka"><pose>0 5 1 0 0 0</pose><geometry><box><size>12 0.2 2</size></box></geometry></collision>
+
+        <visual name="v_on"><pose>0 -5 1 0 0 0</pose><geometry><box><size>12 0.2 2</size></box></geometry><material><ambient>0.7 0.5 0.3 1</ambient></material></visual>
+        <collision name="c_on"><pose>0 -5 1 0 0 0</pose><geometry><box><size>12 0.2 2</size></box></geometry></collision>
+
+        <visual name="v_sol"><pose>-6 0 1 0 0 0</pose><geometry><box><size>0.2 10.2 2</size></box></geometry><material><ambient>0.7 0.5 0.3 1</ambient></material></visual>
+        <collision name="c_sol"><pose>-6 0 1 0 0 0</pose><geometry><box><size>0.2 10.2 2</size></box></geometry></collision>
+
+        <visual name="v_sag"><pose>6 0 1 0 0 0</pose><geometry><box><size>0.2 10.2 2</size></box></geometry><material><ambient>0.7 0.5 0.3 1</ambient></material></visual>
+        <collision name="c_sag"><pose>6 0 1 0 0 0</pose><geometry><box><size>0.2 10.2 2</size></box></geometry></collision>
+
+        <visual name="v_ic1"><pose>-1 0 1 0 0 0</pose><geometry><box><size>0.2 4 2</size></box></geometry></visual> 
+        <collision name="c_ic1"><pose>-1 0 1 0 0 0</pose><geometry><box><size>0.2 4 2</size></box></geometry></collision>
+
+        <visual name="v_ic2"><pose>3 1.5 1 0 0 1.57</pose><geometry><box><size>0.2 3 2</size></box></geometry></visual> 
+        <collision name="c_ic2"><pose>3 1.5 1 0 0 1.57</pose><geometry><box><size>0.2 3 2</size></box></geometry></collision>
+        
+        <visual name="v_ic3"><pose>3 -1.5 1 0 0 1.57</pose><geometry><box><size>0.2 3 2</size></box></geometry></visual> 
+        <collision name="c_ic3"><pose>3 -1.5 1 0 0 1.57</pose><geometry><box><size>0.2 3 2</size></box></geometry></collision>
       </link>
     </model>
 
-    <model name="masa">
+    <model name="orta_sehpa">
       <static>true</static>
-      <pose>2 1 0.25 0 0 0</pose>
+      <pose>-3.5 2.5 0.25 0 0 0</pose>
       <link name="link">
-        <collision name="c"><geometry><box><size>1 1 0.5</size></box></geometry></collision>
-        <visual name="v"><geometry><box><size>1 1 0.5</size></box></geometry><material><ambient>0 0 0.8 1</ambient></material></visual>
+        <collision name="c"><geometry><cylinder radius="0.5" length="0.5"/></geometry></collision>
+        <visual name="v"><geometry><cylinder radius="0.5" length="0.5"/></geometry><material><ambient>0.2 0.2 0.2 1</ambient></material></visual>
       </link>
     </model>
+
+    <model name="yemek_masasi">
+      <static>true</static>
+      <pose>3.5 3.5 0.4 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>1.5 1 0.8</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>1.5 1 0.8</size></box></geometry><material><ambient>0.5 0.2 0.1 1</ambient></material></visual>
+      </link>
+    </model>
+
+    <model name="kose_koltuk">
+      <static>true</static>
+      <pose>-3.5 -3 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>1.5 1.5 0.6</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>1.5 1.5 0.6</size></box></geometry><material><ambient>0 0 0.5 1</ambient></material></visual>
+      </link>
+    </model>
+    
+    <model name="dolap">
+      <static>true</static>
+      <pose>4 -3.5 1 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>1 1 2</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>1 1 2</size></box></geometry><material><ambient>0.8 0.8 0.8 1</ambient></material></visual>
+      </link>
+    </model>
+
   </world>
 </sdf>

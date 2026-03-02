@@ -1,8 +1,0 @@
-image: ev_haritasi.pgm
-mode: trinary #Harita türü: trinary -> sadece üç kategori: free, occupied, unknown.
-resolution: 0.050 # her pikselin boyutu metre cinsinden
-# Haritanın dünya koordinat sistemindeki başlangıç noktası (pose).x = -5.769 my = -4.419 mθ = 0 rad (dönme)
-origin: [-5.769, -4.419, 0]
-negate: 0
-occupied_thresh: 0.65 # 0-1 arasında piksel değeri normalize edilir. 0.65in üstündeyse engel/occupy olarak kabul edilir
-free_thresh: 0.196

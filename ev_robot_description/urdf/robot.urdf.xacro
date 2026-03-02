@@ -119,7 +119,7 @@ Karmaşık robotlarda temiz ve yönetilebilir yapı sağlar-->
       <gz_frame_id>lidar_link</gz_frame_id>
       <always_on>true</always_on>
       <visualize>true</visualize>
-      <update_rate>5</update_rate>
+      <update_rate>30</update_rate>
       <topic>scan</topic> 
       <lidar>
         <scan>
@@ -136,22 +136,26 @@ Karmaşık robotlarda temiz ve yönetilebilir yapı sağlar-->
     </sensor>
   </gazebo>
   <gazebo reference="caster_wheel">
-    <mu1 value="0.001"/>
-    <mu2 value="0.001"/>
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
   </gazebo>
-  <gazebo reference="left_wheel">
-    <mu1 value="0.5"/> <mu2 value="0.5"/>
+ <gazebo reference="left_wheel">
+    <mu1 value="0.1"/> <mu2 value="0.1"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
   </gazebo>
 
   <gazebo reference="right_wheel">
-    <mu1 value="0.5"/>
-    <mu2 value="0.5"/>
+    <mu1 value="0.1"/>
+    <mu2 value="0.1"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
+  </gazebo>
+  <gazebo reference="base_link">
+    <mu1 value="0.1"/>
+    <mu2 value="0.1"/>
   </gazebo>
   <!-- Gazebo’da robotun differential drive (iki tekerlekli) sürüşünü simüle eder. -->
   <!-- cmd_vel → hız komutlarını alır.

@@ -1,27 +1,46 @@
-# ROS2 build files
+# --- ROS2 & Colcon ---
 build/
 install/
 log/
-
-# Colcon files
 *.log
 
-# Python
+# --- Python ---
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# VSCode
+# --- Node.js / React (Web UI) - ÇOK ÖNEMLİ ---
+# Bağımlılıklar (GitHub'a asla yüklenmez, npm install ile geri gelir)
+node_modules/
+*/node_modules/
+web_ui/node_modules/
+
+# React Build Çıktıları
+web_ui/build/
+
+# Loglar ve Hatalar
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Çevresel Değişkenler (Şifre vs. içerebilir)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- IDE & Editörler ---
 .vscode/
-
-# PyCharm
 .idea/
-
-# Linux
 *.swp
 *.swo
 *~
 
-# Gazebo
+# --- İşletim Sistemi ---
+.DS_Store
+Thumbs.db
+
+# --- Gazebo ---
 *.world.bak
