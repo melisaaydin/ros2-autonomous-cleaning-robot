@@ -1,4 +1,4 @@
-<img width="1275" height="1239" alt="Screenshot from 2026-03-02 15-55-25" src="https://github.com/user-attachments/assets/d56fab06-3cf2-418d-aa53-0458898ee9f4" />🤖 ROS 2 Autonomous Home Service Robot & Web Control Interface
+🤖 ROS 2 Autonomous Home Service Robot & Web Control Interface
 <img width="2494" height="1212" alt="Screenshot from 2026-03-02 17-28-53" src="https://github.com/user-attachments/assets/7c3f6b9e-5261-4838-97c7-47bd94a9e36f" />
 📖 Proje Hakkında
 
@@ -28,9 +28,10 @@ Robot, ROS 2 Jazzy üzerinde çalışmakta olup, Nav2 ile otonom sürüş gerçe
     İletişim: Rosbridge Server, Roslibjs
 
     Dil: Python (Kontrol Node'u), C++ (Pluginler), JavaScript
-    <img width="1209" height="1199" alt="Screenshot from 2026-03-02 15-55-44" src="https://github.com/user-attachments/assets/dc33f1a8-c77e-447d-91b0-1cdc114c1f46" />
-    <img width="1275" height="1239" alt="Screenshot from 2026-03-02 15-55-25" src="https://github.com/user-attachments/assets/dc436fcd-06b3-4783-8b51-9eabe1273a86" />
-    <img width="456" height="577" alt="Screenshot from 2026-03-02 15-55-02" src="https://github.com/user-attachments/assets/a2fb9d3d-78c4-4978-9d69-1af336fe69a0" />
+
+<img width="1209" height="1199" alt="Screenshot from 2026-03-02 15-55-44" src="https://github.com/user-attachments/assets/dc33f1a8-c77e-447d-91b0-1cdc114c1f46" />
+<img width="1275" height="1239" alt="Screenshot from 2026-03-02 15-55-25" src="https://github.com/user-attachments/assets/dc436fcd-06b3-4783-8b51-9eabe1273a86" />
+<img width="456" height="577" alt="Screenshot from 2026-03-02 15-55-02" src="https://github.com/user-attachments/assets/a2fb9d3d-78c4-4978-9d69-1af336fe69a0" />
 
 🚀 Kurulum
 
