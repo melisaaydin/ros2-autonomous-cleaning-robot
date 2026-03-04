@@ -48,25 +48,24 @@ mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
 git clone [https://github.com/melisaaydin/ros2-autonomous-cleaning-robot.git](https://github.com/melisaaydin/ros2-autonomous-cleaning-robot.git)
 
-## 3. Bağımlılıkları Yükleyin
+3. Bağımlılıkları Yükleyin
 Bash
 
-## ROS Bağımlılıkları
+# ROS Bağımlılıkları
 sudo apt install ros-jazzy-navigation2 ros-jazzy-nav2-bringup ros-jazzy-slam-toolbox ros-jazzy-rosbridge-server
 
-## Web Arayüzü Bağımlılıkları
-# Not: Klasör adı paketinize göre değişiklik gösterebilir
-cd ~/ros2_ws/src/ros2-autonomous-cleaning-robot/web_ui
+# Web Arayüzü Bağımlılıkları
+cd ~/ros2_ws/src/ev_robot_description/web_ui
 npm install
 
-## 4. Projeyi Derleyin
+4. Projeyi Derleyin
 Bash
 
 cd ~/ros2_ws
 colcon build
 source install/setup.bash
 
-## 🎮 Kullanım
+🎮 Kullanım
 
 Proje, tek bir launch dosyası ile tüm simülasyon ve arka plan servislerini ayağa kaldırır. Web arayüzü ayrı bir terminalde çalıştırılır.
 Adım 1: Robotu ve ROS Sistemini Başlatın
@@ -81,7 +80,7 @@ Adım 2: Web Arayüzünü Başlatın
 Bash
 
 # Terminal 2
-cd ~/ros2_ws/src/ros2-autonomous-cleaning-robot/web_ui
+cd ~/ros2_ws/src/ev_robot_description/web_ui
 npm start
 
 Tarayıcınız otomatik olarak http://localhost:3000 adresine gidecektir.
@@ -93,7 +92,7 @@ Web panelinde "SİSTEM ÇEVRİMİÇİ" yazısını gördükten sonra:
 
     Oda butonlarını kullanarak robotu spesifik noktalara gönderebilirsiniz.
 
-## 📂 Dosya Yapısı
+📂 Dosya Yapısı
 Plaintext
 
 ev_robot_description/
@@ -104,8 +103,10 @@ ev_robot_description/
 ├── ev_robot_description/ # Python kontrol kodları (app_kontrol.py)
 └── web_ui/             # React Web Uygulaması kaynak kodları
 
-##💡 Notlar
+💡 Notlar
 
-    İlk Başlangıç: Robotun haritadaki konumu kod tarafından otomatik olarak ayarlanır (Initial Pose). Ancak robot hareket etmezse, RViz üzerinden manuel olarak "2D Pose Estimate" yaparak robotun konumunu güncelleyebilirsiniz.
+    Eğer robot hareket etmezse, RViz üzerinden "2D Pose Estimate" yaparak robotun konumunu güncelleyin (Otomatik kod çalışmazsa).
 
-    Mobil Kontrol: Telefondan kontrol etmek için bilgisayar ve telefonun aynı Wi-Fi ağında olması ve localhost yerine bilgisayarın IP adresinin (örn: 192.168.1.XX:3000) kullanılması gerekir.
+    Telefondan kontrol etmek için bilgisayar ve telefonun aynı Wi-Fi ağında olması ve localhost yerine bilgisayarın IP adresinin kullanılması gerekir.
+
+Geliştirici: Melisa Aydın
