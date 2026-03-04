@@ -48,53 +48,104 @@ mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
 git clone [https://github.com/melisaaydin/ros2-autonomous-cleaning-robot.git](https://github.com/melisaaydin/ros2-autonomous-cleaning-robot.git)
 
-3. Bağımlılıkları Yükleyin
-Bash
+## **3. Bağımlılıkları Yükleyin**
 
-# ROS Bağımlılıkları
+### **ROS Bağımlılıkları**
+
+Aşağıdaki komutları kullanarak gerekli ROS bağımlılıklarını yükleyin:
+
+```bash
 sudo apt install ros-jazzy-navigation2 ros-jazzy-nav2-bringup ros-jazzy-slam-toolbox ros-jazzy-rosbridge-server
+```
 
-# Web Arayüzü Bağımlılıkları
-cd ~/ros2_ws/src/ev_robot_description/web_ui
+### **Web Arayüzü Bağımlılıkları**
+
+Web arayüzü bağımlılıklarını yüklemek için aşağıdaki adımları izleyin:
+
+1. Klasör yolunuzu repo yapınıza göre düzenleyin:
+
+```bash
+cd ~/ros2_ws/src/ros2-autonomous-cleaning-robot/ev_robot_description/web_ui
+```
+
+2. Ardından, bağımlılıkları yüklemek için şu komutu çalıştırın:
+
+```bash
 npm install
+```
 
-4. Projeyi Derleyin
-Bash
+## **4. Projeyi Derleyin**
 
+Projeyi derlemek için aşağıdaki adımları takip edin:
+
+1. Projeye ait ana dizine gidin:
+
+```bash
 cd ~/ros2_ws
-colcon build
-source install/setup.bash
+```
 
-🎮 Kullanım
+2. Ardından, aşağıdaki komutla projeyi derleyin:
+
+```bash
+colcon build
+```
+
+3. Son olarak, derlenen projeyi çalıştırmak için ortamı yükleyin:
+
+```bash
+source install/setup.bash
+```
+
+
+## **🎮 Kullanım**
 
 Proje, tek bir launch dosyası ile tüm simülasyon ve arka plan servislerini ayağa kaldırır. Web arayüzü ayrı bir terminalde çalıştırılır.
-Adım 1: Robotu ve ROS Sistemini Başlatın
-Bash
 
+### **Adım 1: Robotu ve ROS Sistemini Başlatın**
+
+İlk olarak, ROS ve robot sistemi için gerekli servisleri başlatmak için aşağıdaki komutu çalıştırın:
+
+```bash id="xy6q2r"
 # Terminal 1
 export LIBGL_ALWAYS_SOFTWARE=1
 ros2 launch ev_robot_description hepsini_baslat.launch.py
+```
 
-Bu komut Gazebo, Nav2, RViz, Rosbridge ve Python Kontrolcüyü aynı anda başlatır.
-Adım 2: Web Arayüzünü Başlatın
-Bash
+Bu komut, Gazebo simülasyon ortamını, Nav2 navigasyon sistemini, RViz görselleştirme aracını, Rosbridge'i ve Python kontrolcüsünü aynı anda başlatacaktır.
 
+### **Adım 2: Web Arayüzünü Başlatın**
+
+Web arayüzünü başlatmak için başka bir terminal açın ve aşağıdaki adımları izleyin:
+
+1. Web arayüzü dizinine gidin:
+
+```bash id="9k9knu"
 # Terminal 2
 cd ~/ros2_ws/src/ev_robot_description/web_ui
+```
+
+2. Web arayüzünü başlatın:
+
+```bash id="0y7cv7"
 npm start
+```
 
-Tarayıcınız otomatik olarak http://localhost:3000 adresine gidecektir.
-Adım 3: Kontrol Edin!
+Tarayıcınız otomatik olarak `http://localhost:3000` adresine gidecektir ve web arayüzü üzerinden robotunuzu kontrol edebilirsiniz.
 
-Web panelinde "SİSTEM ÇEVRİMİÇİ" yazısını gördükten sonra:
+### **Adım 3: Kontrol Edin!**
 
-    "Otonom Devriye" butonuna basarak robotu tura çıkarabilirsiniz.
+Web panelinde **"SİSTEM ÇEVRİMİÇİ"** yazısını gördükten sonra:
 
-    Oda butonlarını kullanarak robotu spesifik noktalara gönderebilirsiniz.
+* **"Otonom Devriye"** butonuna basarak robotu tura çıkarabilirsiniz.
+* **Oda butonlarını** kullanarak robotu spesifik noktalara gönderebilirsiniz.
 
-📂 Dosya Yapısı
-Plaintext
+---
 
+### **📂 Dosya Yapısı**
+
+Proje dosya yapısı şu şekilde düzenlenmiştir:
+
+```plaintext
 ev_robot_description/
 ├── launch/             # Başlatma dosyaları (hepsini_baslat.launch.py)
 ├── maps/               # Oluşturulan ev haritası (.yaml / .pgm)
@@ -102,11 +153,17 @@ ev_robot_description/
 ├── worlds/             # Gazebo ev ortamı (.sdf)
 ├── ev_robot_description/ # Python kontrol kodları (app_kontrol.py)
 └── web_ui/             # React Web Uygulaması kaynak kodları
+```
 
-💡 Notlar
+Bu yapının her bir bölümünde proje için gerekli olan dosyalar bulunmaktadır. Başlatma dosyaları, haritalar, robot model dosyaları ve web arayüzü kaynak kodları burada yer alır.
 
-    Eğer robot hareket etmezse, RViz üzerinden "2D Pose Estimate" yaparak robotun konumunu güncelleyin (Otomatik kod çalışmazsa).
 
-    Telefondan kontrol etmek için bilgisayar ve telefonun aynı Wi-Fi ağında olması ve localhost yerine bilgisayarın IP adresinin kullanılması gerekir.
+İşte istediğiniz şekilde düzenlenmiş "Notlar" kısmı:
 
-Geliştirici: Melisa Aydın
+```markdown
+### 💡 Notlar
+
+- **İlk Başlangıç:** Robotun haritadaki konumu kod tarafından otomatik olarak ayarlanır (Initial Pose). Ancak robot hareket etmezse, RViz üzerinden manuel olarak "2D Pose Estimate" yaparak robotun konumunu güncelleyebilirsiniz.
+
+- **Mobil Kontrol:** Telefondan kontrol etmek için bilgisayar ve telefonun aynı Wi-Fi ağında olması ve localhost yerine bilgisayarın IP adresinin (örn: `192.168.1.XX:3000`) kullanılması gerekir.
+```
