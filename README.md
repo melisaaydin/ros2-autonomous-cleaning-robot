@@ -37,12 +37,12 @@ Robot, **ROS 2 Jazzy** üzerinde çalışmakta olup, **Nav2** ile otonom sürü�
 
 Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin.
 
-## 1. Ön Hazırlıklar
+### 1. Ön Hazırlıklar
 * Ubuntu 24.04
 * ROS 2 Jazzy
 * Node.js & npm
 
-## 2. Projeyi Klonlayın
+### 2. Projeyi Klonlayın
 ```bash
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
