@@ -58,7 +58,7 @@ Aşağıdaki komutları kullanarak gerekli ROS bağımlılıklarını yükleyin:
 sudo apt install ros-jazzy-navigation2 ros-jazzy-nav2-bringup ros-jazzy-slam-toolbox ros-jazzy-rosbridge-server
 ```
 
-### **Web Arayüzü Bağımlılıkları**
+### **3. Web Arayüzü Bağımlılıkları**
 
 Web arayüzü bağımlılıklarını yüklemek için aşağıdaki adımları izleyin:
 
