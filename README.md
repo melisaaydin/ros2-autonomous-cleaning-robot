@@ -37,36 +37,36 @@ Robot, **ROS 2 Jazzy** üzerinde çalışmakta olup, **Nav2** ile otonom sürü�
 
 Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin.
 
-### 1. Ön Hazırlıklar
+## 1. Ön Hazırlıklar
 * Ubuntu 24.04
 * ROS 2 Jazzy
 * Node.js & npm
 
-### 2. Projeyi Klonlayın
+## 2. Projeyi Klonlayın
 ```bash
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
 git clone [https://github.com/melisaaydin/ros2-autonomous-cleaning-robot.git](https://github.com/melisaaydin/ros2-autonomous-cleaning-robot.git)
 
-3. Bağımlılıkları Yükleyin
+## 3. Bağımlılıkları Yükleyin
 Bash
 
-# ROS Bağımlılıkları
+## ROS Bağımlılıkları
 sudo apt install ros-jazzy-navigation2 ros-jazzy-nav2-bringup ros-jazzy-slam-toolbox ros-jazzy-rosbridge-server
 
-# Web Arayüzü Bağımlılıkları
+## Web Arayüzü Bağımlılıkları
 # Not: Klasör adı paketinize göre değişiklik gösterebilir
 cd ~/ros2_ws/src/ros2-autonomous-cleaning-robot/web_ui
 npm install
 
-4. Projeyi Derleyin
+## 4. Projeyi Derleyin
 Bash
 
 cd ~/ros2_ws
 colcon build
 source install/setup.bash
 
-🎮 Kullanım
+## 🎮 Kullanım
 
 Proje, tek bir launch dosyası ile tüm simülasyon ve arka plan servislerini ayağa kaldırır. Web arayüzü ayrı bir terminalde çalıştırılır.
 Adım 1: Robotu ve ROS Sistemini Başlatın
@@ -93,7 +93,7 @@ Web panelinde "SİSTEM ÇEVRİMİÇİ" yazısını gördükten sonra:
 
     Oda butonlarını kullanarak robotu spesifik noktalara gönderebilirsiniz.
 
-📂 Dosya Yapısı
+## 📂 Dosya Yapısı
 Plaintext
 
 ev_robot_description/
@@ -104,7 +104,7 @@ ev_robot_description/
 ├── ev_robot_description/ # Python kontrol kodları (app_kontrol.py)
 └── web_ui/             # React Web Uygulaması kaynak kodları
 
-💡 Notlar
+##💡 Notlar
 
     İlk Başlangıç: Robotun haritadaki konumu kod tarafından otomatik olarak ayarlanır (Initial Pose). Ancak robot hareket etmezse, RViz üzerinden manuel olarak "2D Pose Estimate" yaparak robotun konumunu güncelleyebilirsiniz.
 
